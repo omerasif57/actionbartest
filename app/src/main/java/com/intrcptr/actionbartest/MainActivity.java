@@ -16,24 +16,31 @@ import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView detail_text_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        TextView titletextview;
-        try{
-            Field field = Toolbar.class.getDeclaredField( "mTitleTextView" );
-            field.setAccessible( true );
-            titletextview = (TextView)field.get( toolbar );
-            titletextview.setText("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z");
-            titletextview.setSingleLine( false );
-            titletextview.setMaxLines( 2 );
-            titletextview.setEllipsize( TextUtils.TruncateAt.END );
-        }catch( Exception e ) {
-            Log.e(MainActivity.class.toString(), "", e );
-        }
+
+        // using textView in Toolbar in activity_main.xml
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        detail_text_view = (TextView) findViewById(R.id.detail_title);
+        detail_text_view.setText("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z");
+
+//        TextView titletextview;
+//        try{
+//            Field field = Toolbar.class.getDeclaredField( "mTitleTextView" );
+//            field.setAccessible( true );
+//            titletextview = (TextView)field.get( toolbar );
+//            titletextview.setText("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z");
+////            titletextview.setSingleLine( false );
+//            titletextview.setMaxLines( 2 );
+//            titletextview.setEllipsize( TextUtils.TruncateAt.END );
+//        }catch( Exception e ) {
+//            Log.e(MainActivity.class.toString(), "", e );
+//        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
